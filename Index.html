@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👑 THIÊN BÁ — Bypass Link</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: radial-gradient(ellipse at top, #1a0033 0%, #000 60%);
+  min-height: 100vh;
+  color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.container {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(180deg, #0a0005 0%, #150008 100%);
+  border-radius: 20px;
+  padding: 28px;
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) 1;
+  box-shadow: 0 0 60px rgba(251, 191, 36, 0.4);
+}
+h1 {
+  font-size: 24px;
+  text-align: center;
+  background: linear-gradient(90deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+.sub {
+  text-align: center;
+  font-size: 11px;
+  color: #a3a3a3;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+label {
+  display: block;
+  font-size: 12px;
+  color: #fbbf24;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+textarea {
+  width: 100%;
+  height: 80px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #1a0a15;
+  border: 1px solid #78350f;
+  color: #fef3c7;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 14px;
+}
+textarea:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+}
+button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff0000, #ff7700, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease infinite;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  box-shadow: 0 0 24px rgba(251, 191, 36, 0.6);
+  transition: transform 0.15s;
+}
+button:hover { transform: scale(1.02); }
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.result {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #0a0502;
+  border: 1px solid #78350f;
+  min-height: 60px;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+  display: none;
+}
+.result.show { display: block; }
+.result.success {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.08);
+}
+.result.error {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+.result.loading {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+.result a {
+  color: #4ade80;
+  font-weight: 900;
+  word-break: break-all;
+}
+.status {
+  font-size: 11px;
+  text-align: center;
+  color: #6b7280;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #333;
+  font-weight: 700;
+}
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #f59e0b;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>👑 THIÊN BÁ 👑</h1>
+  <div class="sub">BYPASS LINK4M · TOPLINKS · LAYMA · MỌI WEB</div>
+
+  <label>🔗 DÁN LINK CẦN VƯỢT</label>
+  <textarea id="urlInput" placeholder="https://link4m.net/abc123..."></textarea>
+
+  <button id="bypassBtn">⚡ VƯỢT NGAY ⚡</button>
+
+  <div class="result" id="result"></div>
+
+  <div class="status">👑 THIÊN BÁ v1.0 👑</div>
+</div>
+
+<script>
+const urlInput = document.getElementById('urlInput');
+const btn = document.getElementById('bypassBtn');
+const result = document.getElementById('result');
+
+function setResult(html, cls) {
+  result.className = 'result show ' + (cls || '');
+  result.innerHTML = html;
+}
+
+async function bypass() {
+  const url = urlInput.value.trim();
+  if (!url) {
+    setResult('⚠️ Chưa dán link vào', 'error');
+    return;
+  }
+  if (!/^https?:\/\//i.test(url)) {
+    setResult('⚠️ Link phải bắt đầu bằng http:// hoặc https://', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  setResult('<span class="spinner"></span>Đang xử lý... vui lòng chờ 5-15 giây', 'loading');
+
+  try {
+    const res = await fetch('/api/bypass', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url })
+    });
+    const data = await res.json();
+
+    if (data.success && data.result) {
+      setResult(
+        '✅ <b>VƯỢT THÀNH CÔNG</b><br><br>' +
+        'Link đích:<br>' +
+        '<a href="' + data.result + '" target="_blank" rel="noopener">' + data.result + '</a>' +
+        '<br><br>' +
+        '<button onclick="resetForm()" style="padding:10px;font-size:12px;letter-spacing:1px">🔄 VƯỢT TIẾP</button>',
+        'success'
+      );
+    } else {
+      setResult(
+        '❌ Không vượt được: ' + (data.error || 'Lỗi không xác định') +
+        '<br><br>Thử lại sau hoặc link đã hỏng.<br><br>' +
+        '<button onclick="resetForm()" style="padding:10px;font-size:12px;letter-spacing:1px">🔄 THỬ LẠI</button>',
+        'error'
+      );
+    }
+  } catch (e) {
+    setResult('❌ Lỗi kết nối: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function resetForm() {
+  urlInput.value = '';
+  result.className = 'result';
+  result.innerHTML = '';
+  urlInput.focus();
+  window.scrollTo(0, 0);
+}
+
+btn.addEventListener('click', bypass);
+urlInput.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    bypass();
+  }
+});
+</script>
+</body>
+</html>
